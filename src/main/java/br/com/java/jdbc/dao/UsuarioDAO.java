@@ -22,7 +22,7 @@ public class UsuarioDAO {
 		try {
 			String sql = "insert into usuariojava (nome, email) values (?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
-			
+
 			insert.setString(1, usuario.getNome());
 			insert.setString(2, usuario.getEmail());
 			insert.execute();
@@ -117,4 +117,21 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public void delete(Long id) {
+			try {
+				
+				String sql = "delete from usuariojava where id = " + id;
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.execute();
+				connection.commit();
+			} catch (Exception e) {
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				e.printStackTrace();
+			}
+		}
 }

@@ -1,6 +1,5 @@
 package java_jdbc.java_jdbc;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -65,6 +64,19 @@ public class TesteBancoJdbc {
 			usuario.setNome("Arthur da silva leal");
 			
 			dao.update(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void delete() {
+		
+		try {
+			
+			UsuarioDAO dao = new UsuarioDAO();
+			dao.delete(4L);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
