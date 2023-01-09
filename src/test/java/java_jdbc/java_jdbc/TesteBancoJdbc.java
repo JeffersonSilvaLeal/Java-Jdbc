@@ -21,9 +21,8 @@ public class TesteBancoJdbc {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuario = new Usuario();
 
-		usuario.setId(3L);
-		usuario.setNome("Arthur");
-		usuario.setEmail("Arthur@gmail.com");
+		usuario.setNome("Aline");
+		usuario.setEmail("Aline@gmail.com");
 
 		usuarioDAO.insert(usuario);
 	}
