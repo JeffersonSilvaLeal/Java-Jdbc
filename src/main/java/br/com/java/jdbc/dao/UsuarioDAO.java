@@ -64,12 +64,11 @@ public class UsuarioDAO {
 			}
 			e.printStackTrace();
 		}
-		
+
 		return list;
 
 	}
-	
-	
+
 	public Usuario findById(long id) {
 		Usuario usuario = new Usuario();
 
@@ -80,12 +79,12 @@ public class UsuarioDAO {
 			ResultSet resultado = statement.executeQuery();
 
 			while (resultado.next()) {
-				
+
 				usuario.setId(resultado.getLong("id"));
 				usuario.setNome(resultado.getString("nome"));
 				usuario.setEmail(resultado.getString("email"));
 			}
-			
+
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
@@ -94,8 +93,28 @@ public class UsuarioDAO {
 			}
 			e.printStackTrace();
 		}
-		
+
 		return usuario;
 
+	}
+
+	public void update(Usuario usuario) {
+
+		String sql = "update usuariojava set nome = ? where id = " + usuario.getId();
+
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, usuario.getNome());
+
+			statement.execute();
+			connection.commit();
+		} catch (Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
 	}
 }

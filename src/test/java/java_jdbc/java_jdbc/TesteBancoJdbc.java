@@ -33,7 +33,7 @@ public class TesteBancoJdbc {
 		UsuarioDAO dao = new UsuarioDAO();
 		try {
 			List<Usuario> list = dao.ListAll();
-			
+
 			for (Usuario usuario : list) {
 				System.out.println(usuario);
 				System.out.println("----------------------------------------------------------");
@@ -42,19 +42,32 @@ public class TesteBancoJdbc {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void finById() {
-		
+
 		UsuarioDAO dao = new UsuarioDAO();
-		
+
 		try {
-			Usuario usuario = dao.findById(3L);	
-			
+			Usuario usuario = dao.findById(3L);
+
 			System.out.println(usuario);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
+
+	@Test
+	public void update() {
+		UsuarioDAO dao = new UsuarioDAO();
+		try {
+			Usuario usuario = dao.findById(3L);
+			
+			usuario.setNome("Arthur da silva leal");
+			
+			dao.update(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
