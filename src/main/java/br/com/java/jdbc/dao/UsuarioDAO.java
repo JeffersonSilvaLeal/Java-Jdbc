@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.java.jdbc.conexao.SingleConnection;
+import br.com.java.jdbc.model.Contato;
 import br.com.java.jdbc.model.Usuario;
 
 public class UsuarioDAO {
@@ -134,4 +135,27 @@ public class UsuarioDAO {
 				e.printStackTrace();
 			}
 		}
+	
+	
+	public void insertTell(Contato contato) {
+		try {
+			String sql = "insert into contato (numero, tipo, usuario) values (?, ?, ?)";
+			PreparedStatement insert = connection.prepareStatement(sql);
+
+			insert.setString(1, contato.getNumero());
+			insert.setString(2, contato.getTipo());
+			insert.setLong(3, contato.getUsuario());
+			insert.execute();
+			connection.commit();
+
+		} catch (Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import br.com.java.jdbc.conexao.SingleConnection;
 import br.com.java.jdbc.dao.UsuarioDAO;
+import br.com.java.jdbc.model.Contato;
 import br.com.java.jdbc.model.Usuario;
 
 public class TesteBancoJdbc {
@@ -20,8 +21,8 @@ public class TesteBancoJdbc {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuario = new Usuario();
 
-		usuario.setNome("Aline");
-		usuario.setEmail("Aline@gmail.com");
+		usuario.setNome("Lucas");
+		usuario.setEmail("Lucas@gmail.com");
 
 		usuarioDAO.insert(usuario);
 	}
@@ -59,7 +60,7 @@ public class TesteBancoJdbc {
 	public void update() {
 		UsuarioDAO dao = new UsuarioDAO();
 		try {
-			Usuario usuario = dao.findById(3L);
+			Usuario usuario = dao.findById(1L);
 			
 			usuario.setNome("Arthur da silva leal");
 			
@@ -75,10 +76,21 @@ public class TesteBancoJdbc {
 		try {
 			
 			UsuarioDAO dao = new UsuarioDAO();
-			dao.delete(4L);
+			dao.delete(1L);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void insertTell() {
+		Contato contato = new Contato();
+		contato.setNumero("(55) 2555-4416");
+		contato.setTipo("Residencial");
+		contato.setUsuario(9L);
+		
+		UsuarioDAO dao = new UsuarioDAO();
+		dao.insertTell(contato);
 	}
 }
